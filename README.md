@@ -26,6 +26,7 @@ AGENTS.md         协作方式与学习进度记录
 | 21–26 | Softmax、交叉熵、分类梯度及稳定组合损失 |
 | 27–29 | 分类训练、损失与准确率 |
 | 30–33 | 新点预测、类别变化、ReLU 输出和梯度贡献 |
+| 34–36 | 批次平均梯度、梯度抵消和逐样本更新 |
 
 部分实验使用固定的合成数据；不同实验的随机种子和训练设置可能不同。部分注释和 TODO 保留了学习时的思考过程，运行结果需要结合具体实验判断。
 
@@ -45,6 +46,7 @@ python -m pip install -r requirements.txt
 python -m experiments.17_two_layer_network_gradient_check
 python -m experiments.27_classification_training
 python -m experiments.33_relu_gradient_contributions
+python -m experiments.36_batch_vs_sequential_updates
 ```
 
 实验主要通过打印数值和形状进行观察，并非完整的自动化测试套件。分类示例的数据量很小，结果只能说明对应实验中的表现，不能据此推断在真实数据上的泛化能力。
@@ -52,3 +54,5 @@ python -m experiments.33_relu_gradient_contributions
 ## 当前学习方向
 
 在已实现的训练闭环上，继续观察损失、准确率、预测和梯度之间的关系，并逐步学习如何评估模型。项目会保留实验作为学习记录，随着理解的加深继续更新。
+
+2026-10-28：通过实验 34–36 观察平均损失对应的批次梯度、相反梯度的抵消，以及逐样本更新时参数变化对后续梯度的影响。具体学习过程和验证范围记录在 `AGENTS.md`。
